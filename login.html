@@ -4,20 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="./style.css">
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./login.html">Login</a>
+        <a href="./register.html">Register</a>
+    </nav>
 </head>
 <body>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-    <a href="register.html">Register</a>
+    
     <br>
     <h1><b>LOGIN</b></h1>
     <br>
-    <form action="">
+    <form action="./dashboard.html" method="get">
         <label for="username">Username</label>
         <input type="text" required><br> <br>
         <label for="password">Password</label>
         <input type="password" required><br> <br>
-        <a href="./dashboard.html"><input type="button" value="submit"></a>
+       <button type="submit">Login</button>
     </form>
+    <br><br>
+    <div class="c1">
+        <h3>Don't Have an Account?</h3>
+        <a href="./register.html">Register</a>
+    </div>
 </body>
 </html>
