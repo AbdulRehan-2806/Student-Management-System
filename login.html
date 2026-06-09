@@ -10,17 +10,33 @@
         <a href="./login.html">Login</a>
         <a href="./register.html">Register</a>
     </nav>
+    <script>
+        function validateLogin() {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const storedUser = JSON.parse(localStorage.getItem("user"));
+            if (storedUser && storedUser.username === username && storedUser.password === password) {
+                alert('Login successful!');
+            } else {
+                alert('Invalid username or password. Please try again.');
+                return ;
+            }
+            window.location.href = "dashboard.html";
+        }
+
+    </script>
 </head>
 <body>
     
     <br>
     <h1><b>LOGIN</b></h1>
     <br>
-    <form action="./dashboard.html" method="get">
+    <form  onsubmit="return validateLogin()">
         <label for="username">Username</label>
-        <input type="text" required><br> <br>
+        <input type="text" id="username" required><br> <br>
         <label for="password">Password</label>
-        <input type="password" required><br> <br>
+        <input type="password" id="password" required><br> <br>
        <button type="submit">Login</button>
     </form>
     <br><br>

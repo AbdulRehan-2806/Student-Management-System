@@ -10,13 +10,33 @@
         <a href="./login.html">Login</a>
         <a href="./register.html">Register</a>
     </nav>
+    <script>
+        function storeData() {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            var data = {
+                email: email,
+                username: username,
+                password: password
+            };
+            if (password !== confirmPassword) {
+                alert('Passwords do not match. Please try again.');
+                return;
+            }
+            localStorage.setItem("user",JSON.stringify(data));
+            window.location.href = "login.html";
+        }
+    </script>
 </head>
 <body>
     
     <br>
     <h1><b>REGISTER</b></h1>
     <br>
-    <form action="./login.html" method="get">
+    <form  onsubmit= "return storeData()">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" required> <br> <br>
         <label for="username">Username</label>
@@ -24,7 +44,7 @@
         <label for="password">Password</label>
         <input type="password" name="password" id="password" required> <br> <br>
         <label for="confim-password">Confirm Password</label>
-        <input type="password" name="confim-password" id="confim-password" required> <br> <br>
+        <input type="password" name="confim-password" id="confirm-password" required> <br> <br>
         <button type="submit">SignUp</button>
     </form>
     <hr>

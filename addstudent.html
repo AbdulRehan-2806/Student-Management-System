@@ -11,13 +11,31 @@
     <a href="./viewstudent.html">View-Students</a>
     <a href="./logout.html">LogOut</a>
     </nav>
-</head>
-<body>
+    <script>
+        function addStudent() {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const id = document.getElementById('id').value;
+            const branch = document.getElementById('branch').value;
+            var student = {
+                name: name,
+                id: id,
+                branch: branch
+            };
+            var students = JSON.parse(localStorage.getItem("students")) || [];
+            students.push(student);
+            localStorage.setItem("students", JSON.stringify(students));
+            alert('Student added successfully!');
+            window.location.href = "viewstudent.html";
+        }
+    </script>   
+</head>     
+<body>  
     
     <br>
     <b><h1>Add New Student</h1></b>
     <br><br>
-    <form action="./viewstudent.html" method="get">
+    <form onsubmit="return addStudent()">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" required> <br> <br>
         <label for="id">Id</label>

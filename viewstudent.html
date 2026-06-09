@@ -11,6 +11,33 @@
     <a href="./viewstudent.html">View-Students</a>
     <a href="./logout.html">LogOut</a>
     </nav>
+    <script>
+        function loadStudents() {   
+            var students = JSON.parse(localStorage.getItem("students")) || [];
+            var tbody = document.querySelector("table tbody");
+            tbody.innerHTML = "";
+            students.forEach(function(student) {
+                var row = document.createElement("tr");
+                row.innerHTML = "<td>" + student.name + "</td><td>" + student.id + "</td><td>" + student.branch + "</td><td><a href='./editstudent.html?id=" + encodeURIComponent(student.id) + "'>Edit</a> | <button onclick='deleteStudent(\"" + student.id + "\")'>Delete</button></td>";
+                tbody.appendChild(row);
+            });
+        }
+        window.onload = loadStudents;
+
+        function deleteStudent(id) {
+            var students = JSON.parse(localStorage.getItem("students")) || [];
+            for(var i=0; i<students.length; i++){
+               if(id === students[i].id){
+                students.splice(i, 1);
+                localStorage.setItem("students", JSON.stringify(students));
+                alert('Student deleted successfully!');
+                loadStudents();
+                return ;
+               }
+            }
+            alert('Student not found. Please try again.');
+        }
+    </script>
 </head>
 <body>
     <br>
@@ -26,42 +53,6 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>John</td>
-                <td>2345</td>
-                <td>CSE</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>Sainath</td>
-                <td>A7ET</td>
-                <td>CS</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>Prabath</td>
-                <td>62G6</td>
-                <td>CS</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>Rohan</td>
-                <td>0532</td>
-                <td>CSE</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>Jos Buttler</td>
-                <td>6754</td>
-                <td>CSM</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>Gill</td>
-                <td>7765</td>
-                <td>ECE</td>
-                <td><a href="./editstudent.html">Edit</a> | <a href="./deletestudent.html">Delete</a></td>
-            </tr>
         </tbody>
     </table>
 </body>
